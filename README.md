@@ -37,22 +37,52 @@ WorkBalance AI dynamically analyzes employee workload and recommends optimal tas
 
 ---
 
-## Technology Stack
+# WorkBalance AI
 
-Frontend:
-- React.js
+WorkBalance AI is an AI-powered workload management system designed to help IT teams distribute tasks efficiently and maintain a balanced workload among employees.
 
-Backend:
-- Spring Boot
+The system considers employee availability, skills, workload, and task requirements to recommend suitable employees for task assignment.
 
-Database:
-- PostgreSQL
+## 🚀 Features
 
-AI/ML:
+- Employee management
+- Task management
+- AI-based employee recommendations
+- Workload monitoring
+- Intelligent task assignment
+- Choose another employee recommendation
+- Employee workload tracking
+- Task status management
+- Team performance monitoring
+- Recognition and appreciation tracking
+- Manager dashboard
+- Employee dashboard
+- Admin/Boss dashboard
+
+## 🛠️ Technology Stack
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+
+### Backend
 - Python
-- Machine Learning
+- Flask
 
----
+### Database
+- MySQL
+- MySQL Workbench
+
+### Libraries
+- Flask
+- mysql-connector-python
+- Flask-CORS
+
+### Development Tools
+- Visual Studio Code
+- Git
+- GitHub
 
 ## Project Status
 
