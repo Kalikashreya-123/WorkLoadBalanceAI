@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>WorkBalance AI | Admin Dashboard</title>
+
+
+    <!-- Google Font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+  <!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+
+<!-- Admin stylesheet -->
+<link
+    rel="stylesheet"
+    href="admin.css"
+>
+    <!-- Admin stylesheet -->
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+
+<body class="admin-page">
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="admin-sidebar">
+
+
+    <!-- LOGO -->
+
+    <div class="admin-brand">
+
+        <div class="admin-brand-icon">
+
+            <i data-lucide="brain-circuit"></i>
+
+        </div>
+
+
+        <div>
+
+            <div class="admin-brand-name">
+
+                WorkBalance
+                <span>AI</span>
+
+            </div>
+
+
+            <div class="admin-brand-subtitle">
+
+                Intelligent Workforce Platform
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- NAVIGATION -->
+
+    <div class="admin-nav-title">
+
+        ADMINISTRATION
+
+    </div>
+
+
+    <button
+        class="admin-nav-item active"
+        onclick="showAdminSection('adminOverview', this)"
+    >
+
+        <i data-lucide="layout-dashboard"></i>
+
+        <span>Overview</span>
+
+    </button>
+
+
+    <button
+        class="admin-nav-item"
+        onclick="showAdminSection('adminEmployees', this)"
+    >
+
+        <i data-lucide="users"></i>
+
+        <span>Employees</span>
+
+    </button>
+
+
+    <button
+        class="admin-nav-item"
+        onclick="showAdminSection('adminTasks', this)"
+    >
+
+        <i data-lucide="clipboard-list"></i>
+
+        <span>Tasks</span>
+
+    </button>
+
+
+    <button
+        class="admin-nav-item"
+        onclick="showAdminSection('adminManager', this)"
+    >
+
+        <i data-lucide="user-cog"></i>
+
+        <span>Manager</span>
+
+    </button>
+
+
+    <div class="admin-nav-title admin-account-title">
+
+        ACCOUNT
+
+    </div>
+
+
+    <button
+        class="admin-nav-item"
+        onclick="showAdminSection('adminSettings', this)"
+    >
+
+        <i data-lucide="settings"></i>
+
+        <span>Settings</span>
+
+    </button>
+
+
+
+    <!-- AI CARD -->
+
+    <div class="admin-sidebar-ai">
+
+        <div class="admin-ai-icon">
+
+            ✦
+
+        </div>
+
+
+        <strong>
+
+            WorkBalance AI
+
+        </strong>
+
+
+        <p>
+
+            Workforce monitoring system
+
+        </p>
+
+    </div>
+
+
+
+    <!-- LOGOUT -->
+
+    <button
+        class="admin-logout"
+        onclick="adminLogout()"
+    >
+
+        <i data-lucide="log-out"></i>
+
+        <span>
+
+            Logout
+
+        </span>
+
+    </button>
+
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="admin-main">
+
+
+    <!-- TOPBAR -->
+
+    <header class="admin-topbar">
+
+
+        <div class="admin-greeting">
+
+            <div class="admin-eyebrow">
+
+                ADMINISTRATOR
+
+            </div>
+
+
+            <h2>
+
+                System Overview 👋
+
+            </h2>
+
+
+            <p>
+
+                Monitor employees, tasks and workforce activity.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="admin-top-actions">
+
+
+            <button
+                class="admin-refresh-button"
+                onclick="refreshAdminDashboard()"
+            >
+
+                <i data-lucide="refresh-cw"></i>
+
+                Refresh
+
+            </button>
+
+
+            <div class="admin-profile">
+
+
+                <div
+                    class="admin-avatar"
+                    id="adminAvatar"
+                >
+
+                    A
+
+                </div>
+
+
+                <div>
+
+                    <strong id="adminProfileName">
+
+                        Admin
+
+                    </strong>
+
+
+                    <span>
+
+                        Administrator
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- CONTENT -->
+
+    <div class="admin-content">
+
+
+
+        <!-- =================================================
+             OVERVIEW
+        ================================================= -->
+
+        <section
+            id="adminOverview"
+            class="admin-section"
+        >
+
+
+            <div class="admin-page-heading">
+
+                <div>
+
+                    <span>
+
+                        SYSTEM MONITORING
+
+                    </span>
+
+
+                    <h1>
+
+                        Dashboard
+
+                    </h1>
+
+
+                    <p>
+
+                        Monitor the overall WorkBalance AI workforce.
+
+                    </p>
+
+                </div>
+
+
+                <div class="admin-date-card">
+
+                    <i data-lucide="calendar"></i>
+
+
+                    <div>
+
+                        <span>
+
+                            TODAY
+
+                        </span>
+
+
+                        <strong id="adminToday">
+
+                            --
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STAT CARDS -->
+
+            <div class="admin-stat-grid">
+
+
+                <div class="admin-stat-card">
+
+                    <div class="admin-stat-icon blue">
+
+                        <i data-lucide="users"></i>
+
+                    </div>
+
+
+                    <span>
+
+                        Total Employees
+
+                    </span>
+
+
+                    <strong id="totalEmployees">
+
+                        --
+
+                    </strong>
+
+
+                    <p>
+
+                        Registered employees
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="admin-stat-card">
+
+                    <div class="admin-stat-icon purple">
+
+                        <i data-lucide="clipboard-list"></i>
+
+                    </div>
+
+
+                    <span>
+
+                        Total Tasks
+
+                    </span>
+
+
+                    <strong id="totalTasks">
+
+                        --
+
+                    </strong>
+
+
+                    <p>
+
+                        Tasks in system
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="admin-stat-card">
+
+                    <div class="admin-stat-icon green">
+
+                        <i data-lucide="check-circle-2"></i>
+
+                    </div>
+
+
+                    <span>
+
+                        Assigned Tasks
+
+                    </span>
+
+
+                    <strong id="assignedTasks">
+
+                        --
+
+                    </strong>
+
+
+                    <p>
+
+                        Currently assigned
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="admin-stat-card">
+
+                    <div class="admin-stat-icon orange">
+
+                        <i data-lucide="clock-3"></i>
+
+                    </div>
+
+
+                    <span>
+
+                        Pending Tasks
+
+                    </span>
+
+
+                    <strong id="pendingTasks">
+
+                        --
+
+                    </strong>
+
+
+                    <p>
+
+                        Waiting for assignment
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="admin-stat-card">
+
+                    <div class="admin-stat-icon yellow">
+
+                        <i data-lucide="activity"></i>
+
+                    </div>
+
+
+                    <span>
+
+                        Average Workload
+
+                    </span>
+
+
+                    <strong>
+
+                        <span id="averageWorkload">
+
+                            --
+
+                        </span>%
+
+                    </strong>
+
+
+                    <p>
+
+                        Across employees
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SYSTEM STATUS -->
+
+            <div class="admin-system-status">
+
+
+                <div class="admin-status-heading">
+
+                    <div class="admin-status-icon">
+
+                        <i data-lucide="shield-check"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+
+                            SYSTEM STATUS
+
+                        </span>
+
+
+                        <h3>
+
+                            Workforce Health
+
+                        </h3>
+
+                    </div>
+
+
+                    <span
+                        class="admin-status-badge"
+                        id="systemStatus"
+                    >
+
+                        Monitoring
+
+                    </span>
+
+                </div>
+
+
+                <div class="admin-status-grid">
+
+
+                    <div>
+
+                        <span>
+
+                            Employees Available
+
+                        </span>
+
+
+                        <strong id="availableEmployees">
+
+                            --
+
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+
+                            Employees Busy
+
+                        </span>
+
+
+                        <strong id="busyEmployees">
+
+                            --
+
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+
+                            Highest Workload
+
+                        </span>
+
+
+                        <strong id="highestWorkload">
+
+                            --%
+
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+
+                            System Tasks
+
+                        </span>
+
+
+                        <strong id="systemTaskCount">
+
+                            --
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EMPLOYEE MONITORING -->
+
+            <div class="admin-panel">
+
+
+                <div class="admin-panel-heading">
+
+                    <div>
+
+                        <span>
+
+                            WORKFORCE
+
+                        </span>
+
+
+                        <h3>
+
+                            Employee Workload Monitoring
+
+                        </h3>
+
+                    </div>
+
+
+                    <button
+                        class="admin-outline-button"
+                        onclick="showAdminSection('adminEmployees')"
+                    >
+
+                        View Employees
+
+                        <i data-lucide="arrow-up-right"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="admin-table-wrapper">
+
+
+                    <table class="admin-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Employee
+                                </th>
+
+                                <th>
+                                    Workload
+                                </th>
+
+                                <th>
+                                    Available Hours
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="adminOverviewEmployees">
+
+                            <tr>
+
+                                <td colspan="4">
+
+                                    Loading employee data...
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TASK MONITORING -->
+
+            <div class="admin-panel">
+
+
+                <div class="admin-panel-heading">
+
+                    <div>
+
+                        <span>
+
+                            TASK MONITORING
+
+                        </span>
+
+
+                        <h3>
+
+                            Current Task Distribution
+
+                        </h3>
+
+                    </div>
+
+
+                    <button
+                        class="admin-outline-button"
+                        onclick="showAdminSection('adminTasks')"
+                    >
+
+                        View Tasks
+
+                        <i data-lucide="arrow-up-right"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="admin-task-summary">
+
+
+                    <div class="admin-task-box assigned">
+
+                        <i data-lucide="check-circle"></i>
+
+
+                        <div>
+
+                            <span>
+
+                                Assigned
+
+                            </span>
+
+
+                            <strong id="overviewAssigned">
+
+                                --
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="admin-task-box pending">
+
+                        <i data-lucide="clock"></i>
+
+
+                        <div>
+
+                            <span>
+
+                                Pending
+
+                            </span>
+
+
+                            <strong id="overviewPending">
+
+                                --
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="admin-task-box total">
+
+                        <i data-lucide="layers"></i>
+
+
+                        <div>
+
+                            <span>
+
+                                Total
+
+                            </span>
+
+
+                            <strong id="overviewTotalTasks">
+
+                                --
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             EMPLOYEES
+        ================================================= -->
+
+        <section
+            id="adminEmployees"
+            class="admin-section hidden"
+        >
+
+
+            <div class="admin-page-heading">
+
+                <div>
+
+                    <span>
+
+                        WORKFORCE
+
+                    </span>
+
+
+                    <h1>
+
+                        Employees
+
+                    </h1>
+
+
+                    <p>
+
+                        Monitor employee availability and workload.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-panel">
+
+
+                <div class="admin-table-wrapper">
+
+
+                    <table class="admin-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Employee
+                                </th>
+
+                                <th>
+                                    Department
+                                </th>
+
+                                <th>
+                                    Working Hours
+                                </th>
+
+                                <th>
+                                    Workload
+                                </th>
+
+                                <th>
+                                    Available Hours
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="adminEmployeesTable">
+
+                            <tr>
+
+                                <td colspan="6">
+
+                                    Loading employees...
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             TASKS
+        ================================================= -->
+
+        <section
+            id="adminTasks"
+            class="admin-section hidden"
+        >
+
+
+            <div class="admin-page-heading">
+
+                <div>
+
+                    <span>
+
+                        WORK MANAGEMENT
+
+                    </span>
+
+
+                    <h1>
+
+                        Tasks
+
+                    </h1>
+
+
+                    <p>
+
+                        Monitor every task and its current assignment.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-panel">
+
+
+                <div class="admin-table-wrapper">
+
+
+                    <table class="admin-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Task
+                                </th>
+
+                                <th>
+                                    Hours
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Assignment
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="adminTasksTable">
+
+                            <tr>
+
+                                <td colspan="4">
+
+                                    Loading tasks...
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MANAGER
+        ================================================= -->
+
+        <section
+            id="adminManager"
+            class="admin-section hidden"
+        >
+
+
+            <div class="admin-page-heading">
+
+                <div>
+
+                    <span>
+
+                        MANAGEMENT MONITORING
+
+                    </span>
+
+
+                    <h1>
+
+                        Manager Overview
+
+                    </h1>
+
+
+                    <p>
+
+                        Monitor manager activity and workload.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-manager-card">
+
+
+                <div class="admin-manager-avatar">
+
+                    M
+
+                </div>
+
+
+                <div class="admin-manager-info">
+
+                    <span>
+
+                        CURRENT MANAGER
+
+                    </span>
+
+
+                    <h2 id="adminManagerName">
+
+                        Manager
+
+                    </h2>
+
+
+                    <p>
+
+                        Responsible for team workload,
+                        task allocation and employee monitoring.
+
+                    </p>
+
+                </div>
+
+
+                <div class="admin-manager-stats">
+
+
+                    <div>
+
+                        <span>
+
+                            Team Size
+
+                        </span>
+
+
+                        <strong id="managerTeamSize">
+
+                            --
+
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+
+                            Team Workload
+
+                        </span>
+
+
+                        <strong>
+
+                            <span id="managerWorkload">
+
+                                --
+
+                            </span>%
+
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+
+                            Assigned Tasks
+
+                        </span>
+
+
+                        <strong id="managerAssignedTasks">
+
+                            --
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="admin-panel">
+
+
+                <div class="admin-panel-heading">
+
+                    <div>
+
+                        <span>
+
+                            MANAGER ACTIVITY
+
+                        </span>
+
+
+                        <h3>
+
+                            Current Responsibilities
+
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-manager-list">
+
+
+                    <div>
+
+                        <i data-lucide="users"></i>
+
+                        <span>
+
+                            Monitoring employee workload
+
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i data-lucide="clipboard-check"></i>
+
+                        <span>
+
+                            Managing task assignments
+
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i data-lucide="sparkles"></i>
+
+                        <span>
+
+                            Using AI recommendations
+
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i data-lucide="bar-chart-3"></i>
+
+                        <span>
+
+                            Reviewing team analytics
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SETTINGS
+        ================================================= -->
+
+        <section
+            id="adminSettings"
+            class="admin-section hidden"
+        >
+
+
+            <div class="admin-page-heading">
+
+                <div>
+
+                    <span>
+
+                        ACCOUNT
+
+                    </span>
+
+
+                    <h1>
+
+                        Settings
+
+                    </h1>
+
+
+                    <p>
+
+                        Admin account and system settings.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-panel admin-settings-placeholder">
+
+                <i data-lucide="settings"></i>
+
+
+                <h3>
+
+                    Admin Settings
+
+                </h3>
+
+
+                <p>
+
+                    System configuration and administrative
+                    controls can be added here later.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="../connection/config.js"></script>
+
+<script src="../connection/api.js"></script>
+
+<script src="admin.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        if (window.lucide) {
+
+            lucide.createIcons();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

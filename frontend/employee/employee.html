@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>WorkBalance AI | Employee Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="employee.css"
+    >
+
+</head>
+
+<body>
+<!-- =========================================================
+     DASHBOARD PAGE
+     ========================================================= -->
+
+<div
+    id="dashboardPage"
+    class="page hidden"
+>
+
+   <header class="topbar">
+
+    <div class="topbar-left">
+
+        <div class="dashboard-logo-mark">
+            <span>W</span>
+        </div>
+
+        <div>
+            <div class="dashboard-logo">
+                WorkBalance <span>AI</span>
+            </div>
+
+            <div class="dashboard-subtitle">
+                Employee Workspace
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="topbar-right">
+
+        <div class="notification-button">
+            🔔
+            <span class="notification-dot"></span>
+        </div>
+
+
+        <div class="user-profile">
+
+            <div class="user-avatar" id="userAvatar">
+                U
+            </div>
+
+            <div class="user-details">
+
+                <strong id="loggedUser">
+                    Employee
+                </strong>
+
+                <span>
+                    Employee
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<aside class="sidebar">
+
+    <div class="sidebar-label">
+        WORKSPACE
+    </div>
+
+
+    <button
+        class="sidebar-btn active"
+        onclick="showSection('overview')"
+    >
+        <span class="side-icon">⌂</span>
+        <span>Overview</span>
+    </button>
+
+
+    <button
+        class="sidebar-btn"
+        onclick="showSection('tasks')"
+    >
+        <span class="side-icon">✓</span>
+        <span>My Tasks</span>
+    </button>
+
+
+    <button
+        class="sidebar-btn"
+        onclick="showSection('workload')"
+    >
+        <span class="side-icon">◉</span>
+        <span>My Workload</span>
+    </button>
+
+
+    <button
+        class="sidebar-btn"
+        onclick="showSection('recognition')"
+    >
+        <span class="side-icon">★</span>
+        <span>Recognition</span>
+    </button>
+
+
+    <div class="sidebar-label sidebar-label-bottom">
+        ACCOUNT
+    </div>
+
+
+    <button
+        class="sidebar-btn"
+        onclick="showSection('profile')"
+    >
+        <span class="side-icon">◯</span>
+        <span>My Profile</span>
+    </button>
+
+
+    <div class="sidebar-ai-card">
+
+        <div class="sidebar-ai-icon">
+            ✦
+        </div>
+
+        <strong>
+            WorkBalance AI
+        </strong>
+
+        <p>
+            Your intelligent workload assistant
+        </p>
+
+    </div>
+
+</aside>
+
+
+<main class="dashboard employee-dashboard">
+
+
+    <!-- =====================================================
+         OVERVIEW
+    ====================================================== -->
+
+    <section
+        id="overview"
+        class="dashboard-section"
+    >
+
+        <div class="page-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    EMPLOYEE WORKSPACE
+                </div>
+
+                <h1>
+                    Welcome back,
+                    <span id="employeeWelcomeName">
+                        Employee
+                    </span> 👋
+                </h1>
+
+                <p>
+                    Here's your workload and wellbeing overview for today.
+                </p>
+
+            </div>
+
+
+            <div class="today-card">
+
+                <span>
+                    TODAY
+                </span>
+
+                <strong id="todayDate">
+                    --
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- STAT CARDS -->
+
+        <div class="employee-stat-grid">
+
+
+            <div class="employee-stat-card workload-stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon blue-icon">
+                        ◉
+                    </div>
+
+                    <span class="stat-status">
+                        ● Healthy
+                    </span>
+
+                </div>
+
+                <div class="stat-label">
+                    Current Workload
+                </div>
+
+                <div class="stat-value">
+                    <span id="employeeWorkload">
+                        --
+                    </span>%
+                </div>
+
+                <div class="stat-progress">
+
+                    <div
+                        id="employeeWorkloadBar"
+                        style="width: 0%"
+                    ></div>
+
+                </div>
+
+                <div class="stat-footer">
+                    Balanced workload
+                </div>
+
+            </div>
+
+
+            <div class="employee-stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon purple-icon">
+                        ◷
+                    </div>
+
+                </div>
+
+                <div class="stat-label">
+                    Available Hours
+                </div>
+
+                <div class="stat-value">
+                    <span id="employeeAvailableHours">
+                        --
+                    </span>
+                    <small>hrs</small>
+                </div>
+
+                <div class="stat-footer">
+                    Remaining today
+                </div>
+
+            </div>
+
+
+            <div class="employee-stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon green-icon">
+                        ✓
+                    </div>
+
+                    <span class="stat-status green-status">
+                        Active
+                    </span>
+
+                </div>
+
+                <div class="stat-label">
+                    Task Progress
+                </div>
+
+                <div class="stat-value">
+                    <span id="employeeTaskCount">
+                        --
+                    </span>
+                </div>
+
+                <div class="stat-footer">
+                    Assigned tasks
+                </div>
+
+            </div>
+
+
+            <div class="employee-stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon yellow-icon">
+                        ★
+                    </div>
+
+                </div>
+
+                <div class="stat-label">
+                    Recognition Points
+                </div>
+
+                <div class="stat-value">
+                    <span id="employeeRecognition">
+                        --
+                    </span>
+                </div>
+
+                <div class="stat-footer">
+                    Keep up the great work!
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- MAIN OVERVIEW GRID -->
+
+        <div class="employee-main-grid">
+
+
+            <!-- MY WORKLOAD -->
+
+            <div class="premium-panel workload-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="panel-kicker">
+                            WORKLOAD
+                        </span>
+
+                        <h3>
+                            My Workload
+                        </h3>
+
+                    </div>
+
+                    <span class="panel-badge">
+                        Live
+                    </span>
+
+                </div>
+
+
+                <div class="workload-visual">
+
+                    <div class="workload-circle">
+
+                        <div>
+
+                            <strong id="workloadCircleValue">
+                                --
+                            </strong>
+
+                            <span>
+                                workload
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="workload-info">
+
+                        <div class="workload-info-row">
+
+                            <span>
+                                Working hours
+                            </span>
+
+                            <strong id="workingHours">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <div class="workload-info-row">
+
+                            <span>
+                                Available
+                            </span>
+
+                            <strong id="availableHoursSmall">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <div class="workload-info-row">
+
+                            <span>
+                                Status
+                            </span>
+
+                            <strong
+                                class="available-status"
+                                id="employeeStatus"
+                            >
+                                Available
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI INSIGHT -->
+
+            <div class="premium-panel ai-panel">
+
+                <div class="ai-panel-header">
+
+                    <div class="ai-big-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <span>
+                            WORKBALANCE AI
+                        </span>
+
+                        <h3>
+                            Your AI Insight
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-message">
+
+                    <strong>
+                        Your workload looks balanced.
+                    </strong>
+
+                    <p>
+                        Keep maintaining a steady pace. If your workload
+                        increases, WorkBalance AI will help identify
+                        potential workload imbalance.
+                    </p>
+
+                </div>
+
+
+                <div class="ai-footer">
+
+                    <span>
+                        ✦ AI-powered wellbeing support
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- RECENT TASKS -->
+
+        <div class="premium-panel recent-panel">
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <span class="panel-kicker">
+                        WORK MANAGEMENT
+                    </span>
+
+                    <h3>
+                        Recent Tasks
+                    </h3>
+
+                </div>
+
+                <button
+                    class="view-button"
+                    onclick="showSection('tasks')"
+                >
+                    View all →
+                </button>
+
+            </div>
+
+
+            <div id="employeeRecentTasks">
+
+                <div class="empty-state">
+                    Loading your tasks...
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MY TASKS
+    ====================================================== -->
+
+    <section
+        id="tasks"
+        class="dashboard-section hidden"
+    >
+
+        <div class="page-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    WORK MANAGEMENT
+                </div>
+
+                <h1>
+                    My Tasks
+                </h1>
+
+                <p>
+                    View your assigned work, priorities and deadlines.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="tasksContainer"
+            class="premium-panel table-panel"
+        >
+            Loading your tasks...
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MY WORKLOAD
+    ====================================================== -->
+
+    <section
+        id="workload"
+        class="dashboard-section hidden"
+    >
+
+        <div class="page-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    WORKLOAD ANALYTICS
+                </div>
+
+                <h1>
+                    My Workload
+                </h1>
+
+                <p>
+                    Understand your current workload and available capacity.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="workloadContainer"
+            class="premium-panel table-panel"
+        >
+            Loading workload...
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RECOGNITION
+    ====================================================== -->
+
+    <section
+        id="recognition"
+        class="dashboard-section hidden"
+    >
+
+        <div class="page-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    EMPLOYEE RECOGNITION
+                </div>
+
+                <h1>
+                    Recognition
+                </h1>
+
+                <p>
+                    Your achievements and appreciation history.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="recognition-hero">
+
+            <div class="recognition-star">
+                ★
+            </div>
+
+            <div>
+
+                <span>
+                    TOTAL RECOGNITION
+                </span>
+
+                <strong id="recognitionHeroPoints">
+                    --
+                </strong>
+
+                <p>
+                    Keep making an impact!
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="recognitionContainer"
+            class="premium-panel table-panel"
+        >
+            Loading recognition...
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROFILE
+    ====================================================== -->
+
+    <section
+        id="profile"
+        class="dashboard-section hidden"
+    >
+
+        <div class="page-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    ACCOUNT
+                </div>
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <p>
+                    Your WorkBalance AI employee information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-grid">
+
+            <div class="premium-panel profile-card">
+
+                <div class="profile-large-avatar">
+                    U
+                </div>
+
+                <h2 id="profileName">
+                    Employee
+                </h2>
+
+                <p id="profileRole">
+                    Employee
+                </p>
+
+            </div>
+
+
+            <div
+                class="premium-panel profile-details"
+                id="profileDetails"
+            >
+
+                Loading profile...
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script src="../connection/config.js"></script>
+<script src="../connection/api.js"></script>
+<script src="employee.js"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
+
